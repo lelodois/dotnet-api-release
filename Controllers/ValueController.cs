@@ -13,7 +13,10 @@ namespace dotnet.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
-            return new string[] { "value1", "value2" };
+            var configuration = new Configuration();
+            var appSettings = configuration.Get("Consumer");
+            var token = configuration.Get("token");
+            return new string[] { "value1", "value2", token };
         }
 
         [HttpGet("{id}")]
